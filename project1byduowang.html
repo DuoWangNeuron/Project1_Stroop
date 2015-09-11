@@ -1,0 +1,312 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<style>
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", Arial, sans-serif;
+    font-size: 13px;
+    line-height: 18px;
+    color: #737373;
+    background-color: white;
+    margin: 10px 13px 10px 13px;
+}
+table {
+	margin: 10px 0 15px 0;
+	border-collapse: collapse;
+}
+td,th {	
+	border: 1px solid #ddd;
+	padding: 3px 10px;
+}
+th {
+	padding: 5px 10px;	
+}
+
+a {
+    color: #0069d6;
+}
+a:hover {
+    color: #0050a3;
+    text-decoration: none;
+}
+a img {
+    border: none;
+}
+p {
+    margin-bottom: 9px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #404040;
+    line-height: 36px;
+}
+h1 {
+    margin-bottom: 18px;
+    font-size: 30px;
+}
+h2 {
+    font-size: 24px;
+}
+h3 {
+    font-size: 18px;
+}
+h4 {
+    font-size: 16px;
+}
+h5 {
+    font-size: 14px;
+}
+h6 {
+    font-size: 13px;
+}
+hr {
+    margin: 0 0 19px;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+}
+blockquote {
+    padding: 13px 13px 21px 15px;
+    margin-bottom: 18px;
+    font-family:georgia,serif;
+    font-style: italic;
+}
+blockquote:before {
+    content:"\201C";
+    font-size:40px;
+    margin-left:-10px;
+    font-family:georgia,serif;
+    color:#eee;
+}
+blockquote p {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 18px;
+    margin-bottom: 0;
+    font-style: italic;
+}
+code, pre {
+    font-family: Monaco, Andale Mono, Courier New, monospace;
+}
+code {
+    background-color: #fee9cc;
+    color: rgba(0, 0, 0, 0.75);
+    padding: 1px 3px;
+    font-size: 12px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+pre {
+    display: block;
+    padding: 14px;
+    margin: 0 0 18px;
+    line-height: 16px;
+    font-size: 11px;
+    border: 1px solid #d9d9d9;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+pre code {
+    background-color: #fff;
+    color:#737373;
+    font-size: 11px;
+    padding: 0;
+}
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:10px auto;
+    }
+}
+@media print {
+	body,code,pre code,h1,h2,h3,h4,h5,h6 {
+		color: black;
+	}
+	table, pre {
+		page-break-inside: avoid;
+	}
+}
+</style>
+<title>Project 1：Stroop</title>
+
+</head>
+<body>
+<h2>Project 1：Stroop</h2>
+
+<p>by Duo Wang</p>
+
+<h3>Background Information</h3>
+
+<p>In a Stroop task, participants are presented with a list of words, with each word displayed in a color of ink. The participant’s task is to say out loud the color of the ink in which the word is printed. The task has two conditions: a congruent words condition, and an incongruent words condition. In the congruent words condition, the words being displayed are color words whose names match the colors in which they are printed: for example RED, BLUE. In the incongruent words condition, the words displayed are color words whose names do not match the colors in which they are printed: for example PURPLE, ORANGE. In each case, we measure the time it takes to name the ink colors in equally-sized lists. Each participant will go through and record a time from each condition.</p>
+
+<h3>1. What is our independent variable? What is our dependent variable?</h3>
+
+<p>In this Stroop task, the independent variable is a True/False variable for the congruent or incongruent condition. The dependent variable is subject's response time to name the ink colors.</p>
+
+<h3>2. What is an appropriate set of hypotheses for this task? What kind of statistical test do you expect to perform? Justify your choices.</h3>
+
+<p>H0 : μ1 - μ2 = 0
+H1 : μ1 - μ2 ≠ 0 ;
+where
+μ1 = the mean time in the congruent words condition
+μ2 = the mean time in the incongruent words condition</p>
+
+<p>I will porform t-test to examine the difference between the means in each condition. The data set should meet the three assumptions for t-test[1] that
+1.the two samples are independently and randomly drawn from the source population. (The task assumption)
+2.the scale of measurement for both samples has the properties of an equal interval scale. (The data in each condition should have the same variance, test later)
+3.the source population can be reasonably supposed to have a normal distribution.(test later)</p>
+
+<p>[1]the definations and assumptions from «Concepts and Applications of Inferential Statistics» by Richard Lowry</p>
+
+<h3>3. Report some descriptive statistics regarding this dataset. Include at least one measure of central tendency and at least one measure of variability.</h3>
+
+<p>To get descriptive statistics we run Python code</p>
+
+<pre><code>"""
+Project 1
+Created on Sat Sep  5 18:36:37 2015
+@author: Duo Wang
+"""
+# Reading data locally
+import pandas as pd
+stroop = pd.read_csv('/Users/Wangduo/stroopdata.csv')
+
+#Report some descriptive statistics
+print stroop.describe()
+</code></pre>
+
+<p>and get results as below</p>
+
+<pre><code>Congruent  Incongruent
+count  24.000000    24.000000
+mean   14.051125    22.015917
+std     3.559358     4.797057
+min     8.630000    15.687000
+25%    11.895250    18.716750
+50%    14.356500    21.017500
+75%    16.200750    24.051500
+max    22.328000    35.255000
+</code></pre>
+
+<p>The mean in the congruent condition is 8.63 and in the incongruent condition is 15.69,
+The standard deviations in the congruent condition is 3.55 and in the incongruent condition is 4.79.</p>
+
+<h3>4. Provide one or two visualizations that show the distribution of the sample data. Write one or two sentences noting what you observe about the plot or plots.</h3>
+
+<p>To do the visualizations we run</p>
+
+<pre><code>#visualizations (with seaborn style)
+import matplotlib.pyplot as plot
+import seaborn as sns
+
+# Do the boxplot
+plot.show(sns.boxplot(stroop))
+
+# Do the violinplot
+plot.show(sns.violinplot(stroop, widths = 0.5))
+</code></pre>
+
+<p>and get boxplot:
+<img src="boxplot.png"></p>
+
+<p>and "violin" plot:
+<img src="violinplot.png"></p>
+
+<p>From the boxplot we can read the minimum, median, maximum, upper and lower quartile for both conditions, and we can see that the difference between their medians are significant. There seems to be two outliers in Incongruent condition, however I choose not to reject them as bad point since there are only 24 samples and we do not know whether the outliers have any relationshit to the real task.</p>
+
+<p>From the violinplot we can see that the samples seem to have a normal distribution. But the normal assumption for t-test also need to be tested.</p>
+
+<h3>5. Now, perform the statistical test and report your results. What is your confidence level and your critical statistic value? Do you reject the null hypothesis or fail to reject it? Come to a conclusion in terms of the experiment task. Did the results match up with your expectations?</h3>
+
+<p>First we test the same variance assumption, we run:</p>
+
+<pre><code>from scipy.stats import levene
+print levene(stroop.Congruent, stroop.Incongruent)
+</code></pre>
+
+<p>and get:</p>
+
+<pre><code>(0.2502499448677214, 0.61928406991282192)
+</code></pre>
+
+<p>the p-value for this test is 0.619 > 0.05. we cannot reject the assumption that their variance are equal, so we assume that the same variance assumption is true.</p>
+
+<p>Then I try to perform the Kolmogorov-Smirnov test for the normal distribution assumption, I run:</p>
+
+<pre><code>from scipy.stats import kstest
+print kstest(stroop.Congruent, 'norm')
+print kstest(stroop.Incongruent, 'norm')
+</code></pre>
+
+<p>and get...errors:</p>
+
+<pre><code>(1.0, 0.0)
+(1.0, 0.0)
+</code></pre>
+
+<p>However, when I watch their probability plots:</p>
+
+<pre><code>import pylab 
+import scipy.stats as stats
+
+stats.probplot(stroop.Congruent, dist="norm", plot=pylab)
+pylab.show()
+stats.probplot(stroop.Incongruent, dist="norm", plot=pylab)
+pylab.show()
+</code></pre>
+
+<p><img src="qqplot1.png"> <img src="qqplot2.png"></p>
+
+<p>I can see that except for the outliers, those points on this plot form a nearly linear pattern, which indicates that the normal distribution is a good model for this data set. So I skip KStest and perform the t-test directly.</p>
+
+<pre><code># Do the t-test
+import scipy.stats as ss
+print ss.ttest_ind(stroop.Congruent, stroop.Incongruent)
+
+(-6.5322505539032285, 4.5949489622951854e-08)
+</code></pre>
+
+<p>p-value is 4.6e-8 &lt;&lt; 0.05, we can reject H0 that the mean in the congruent words condition is equal to the mean in the Incongruent words condition at the confidence level of 0.05.</p>
+
+<p>We can draw the conclusion that it takes more time to name the ink colors in the incongruent condition than in the congruent condition.</p>
+
+<p>(..I tried several times but still have no idea of what happened in KStest.)</p>
+
+<h3>6. Optional: What do you think is responsible for the effects observed? Can you think of an alternative or similar task that would result in a similar effect? Some research about the problem will be helpful for thinking about these two questions!</h3>
+
+<p>I think the attention theory could provide an explaination for the effects. In an incongruent words condition, subjects can not focus on the word(e.g."red")but have to use more attention to recognize the real color of the word(e.g. blue, if the word "red" is printed in blue).</p>
+
+<p>If the selective attention theory is true, we can observe similar effects on an alternative task. The subjects are shown with an animal figure(e.g. duck) while hearing the name of another animal(e.g. dog, or even the sound made by another animal). And the task is to name the animal shown on the screen. We can measure and compare the response time in both congruent/incongruent animals condition.</p>
+
+<p>I am also interested in the researches regarding the neural mechanisms. Brain imaging techniques have shown that the anterior cingulate cortex and the dorsolateral prefrontal cortex(PFC) are involved in the processing of the Stroop task[2]. So the researchers model the process on different levels: from working memory to the top-down control of PFC. One example : using the recorded fMRI data, S A. Herd[3] address that top-down attention control from PFC play an important role and he use a neural network model to simulate the process. I would like to learn more about those neuron-network methods.</p>
+
+<p>[2]https://en.wikipedia.org/wiki/Stroop_effect</p>
+
+<p>[3]Neural Mechanisms of Cognitive Control: An Integrative Model of Stroop Task Performance and fMRI Data, 2006, Seth A. Herd, Marie T. Banich, Randall C. O’Reilly</p>
+</body>
+</html>
